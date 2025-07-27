@@ -18,6 +18,15 @@
     h6, p {
       text-align: center;
     }
+
+    #lightboxImageContainer {
+      width: 100%;
+      padding-top: 66.66%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 0.5rem;
+    }
   </style>
 </head>
 
@@ -26,9 +35,7 @@
     <h2 class="mb-4 text-center">Cards Gallery</h2>
     <div class="row g-4">
 
-      <!-- Cards 1 to 6 -->
-      <!-- Each image now has the 'lightbox' class -->
-
+      <!-- 6 Cards -->
       <div class="col-md-4">
         <div class="card">
           <img src="https://storage.googleapis.com/acciojob-open-file-collections/image1.jpg" class="card-img-top lightbox" alt="Image 1" data-bs-toggle="modal" data-bs-target="#lightboxModal" onclick="openLightbox('https://storage.googleapis.com/acciojob-open-file-collections/image1.jpg')">
@@ -92,12 +99,12 @@
     </div>
   </div>
 
-  <!-- Lightbox Modal -->
+  <!-- Lightbox Modal (no <img> used here anymore) -->
   <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content bg-transparent border-0">
         <div class="modal-body text-center p-0">
-          <img id="lightboxImage" src="" class="img-fluid rounded" alt="Full-size image">
+          <div id="lightboxImageContainer"></div>
         </div>
       </div>
     </div>
@@ -106,7 +113,8 @@
   <!-- Scripts -->
   <script>
     function openLightbox(src) {
-      document.getElementById('lightboxImage').src = src;
+      const container = document.getElementById('lightboxImageContainer');
+      container.style.backgroundImage = `url('${src}')`;
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
